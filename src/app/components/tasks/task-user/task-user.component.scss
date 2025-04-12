@@ -1,0 +1,24 @@
+.task-user-container {
+  min-width: 250px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  background-color: #2f233f;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #3f2a5b;
+  }
+  &.active {
+    background-color: #8951d6;
+  }
+}
+
+img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}

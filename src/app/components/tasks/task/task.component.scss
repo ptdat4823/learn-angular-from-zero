@@ -1,0 +1,40 @@
+.task {
+  &-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #b38ee0;
+    border-radius: 10px;
+    padding: 1rem;
+
+    & p {
+      margin: 0;
+    }
+    & h2 {
+      color: black;
+      margin: 0 0 0.5rem;
+    }
+  }
+
+  &-date {
+    color: #422451;
+  }
+  &-description {
+    color: black;
+  }
+}
+
+button {
+  all: unset;
+  width: fit-content;
+  background-color: #280161;
+  border-radius: 6px;
+  color: white;
+  margin-left: auto;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background-color: #350283;
+    cursor: pointer;
+  }
+}

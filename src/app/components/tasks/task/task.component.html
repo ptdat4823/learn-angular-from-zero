@@ -1,0 +1,6 @@
+<div class="task-container">
+  <h2>{{ task.title }}</h2>
+  <p class="task-date">{{ task.dueDate | date : 'MM/dd/yyyy, h:mm a' }}</p>
+  <p class="task-description">{{ task.description }}</p>
+  <button (click)="onComplete()">Complete</button>
+</div>

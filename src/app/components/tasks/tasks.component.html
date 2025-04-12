@@ -1,0 +1,29 @@
+@if (isAddingTask) {
+<new-task (cancel)="onTaskCancel()" (submit)="onTaskSubmit($event)"></new-task>
+}
+<section>
+  <div class="task-users">
+    @for (user of userData; track user.id) {
+    <task-user
+      [user]="user"
+      [isSelected]="selectedUser?.id === user.id"
+      (onClick)="onUserSelected($event)"
+    />
+    }
+  </div>
+  @if (selectedUser) {
+  <div class="task-container">
+    <div class="task-title">
+      <h2>{{ selectedUser.name }}'s Tasks</h2>
+      <button (click)="onAddTask()">Add task</button>
+    </div>
+    <div class="task-items">
+      @for (task of getTasks(selectedUser.id); track task.id) {
+      <task [task]="task" (complete)="handleTaskCompleted($event)" />
+      }
+    </div>
+  </div>
+  } @else {
+  <h2 class="task-empty-string">Select a user to see their tasks</h2>
+  }
+</section>
