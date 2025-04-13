@@ -6,6 +6,16 @@ section {
   margin: 1rem 0;
 }
 
+ul {
+  all: unset;
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
 .task {
   &-users {
     display: flex;
@@ -42,14 +52,6 @@ section {
     background-color: #2a1e41;
     border-radius: 10px;
     padding: 0 1rem 1rem;
-  }
-  &-items {
-    max-height: 400px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    overflow-y: auto;
-    border-radius: 10px;
   }
 }
 

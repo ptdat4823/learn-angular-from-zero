@@ -2,7 +2,7 @@
   <dialog open>
     <h2>Add task</h2>
 
-    <form [formGroup]="form" (submit)="onSubmit($event)">
+    <form [formGroup]="form" (submit)="onFormSubmit($event)">
       <label for="title">Title</label>
       <input formControlName="title" type="text" id="title" />
       <form-warning [form]="form" [controlName]="'title'" [messages]="formMessages" />
@@ -15,7 +15,7 @@
       <form-warning [form]="form" [controlName]="'dueDate'" [messages]="formMessages" />
 
       <div class="actions">
-        <button type="button" class="cancel-button" (click)="onCancel()">Cancel</button>
+        <button type="button" class="cancel-button" (click)="close()">Cancel</button>
         <button type="submit" class="submit-button">Add Task</button>
       </div>
     </form>

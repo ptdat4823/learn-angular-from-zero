@@ -1,27 +1,27 @@
-@if (isAddingTask) {
-<new-task (cancel)="onTaskCancel()" (submit)="onTaskSubmit($event)"></new-task>
+@if (isAddingTask && selectedUser) {
+<new-task (onClose)="toggleDialog()" [userId]="selectedUser.id"></new-task>
 }
 <section>
   <div class="task-users">
-    @for (user of userData; track user.id) {
+    @for (user of getUsers(); track user.id) {
     <task-user
       [user]="user"
       [isSelected]="selectedUser?.id === user.id"
-      (onClick)="onUserSelected($event)"
+      (onClick)="onUserSelect($event)"
     />
     }
   </div>
   @if (selectedUser) {
   <div class="task-container">
     <div class="task-title">
-      <h2>{{ selectedUser.name }}'s Tasks</h2>
-      <button (click)="onAddTask()">Add task</button>
+      <h2>{{ selectedUser!.name }}'s Tasks</h2>
+      <button (click)="toggleDialog()">Add task</button>
     </div>
-    <div class="task-items">
-      @for (task of getTasks(selectedUser.id); track task.id) {
-      <task [task]="task" (complete)="handleTaskCompleted($event)" />
+    <ul>
+      @for (task of getTasks(); track task.id) {
+      <task [task]="task" />
       }
-    </div>
+    </ul>
   </div>
   } @else {
   <h2 class="task-empty-string">Select a user to see their tasks</h2>

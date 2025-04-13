@@ -6,9 +6,3 @@ export type Task = {
   completed: boolean;
   userId: string;
 };
-
-export type TaskFormData = {
-  title: string;
-  description: string;
-  dueDate: Date;
-};

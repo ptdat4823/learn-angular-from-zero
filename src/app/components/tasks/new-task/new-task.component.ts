@@ -1,6 +1,6 @@
 import { FORM_ERROR } from '@/constants/form';
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { FormWarningComponent } from '../../common/form-warning/form-warning.component';
-import { TaskFormData } from '@/types/task';
+import { TaskService } from '../tasks.service';
 
 @Component({
   selector: 'new-task',
@@ -19,10 +19,11 @@ import { TaskFormData } from '@/types/task';
   styleUrl: './new-task.component.scss',
 })
 export class NewTaskComponent {
-  @Output() cancel = new EventEmitter<void>();
-  @Output() submit = new EventEmitter<TaskFormData>();
+  @Input({ required: true }) userId!: string;
+  @Output() onClose = new EventEmitter<void>();
 
   private fb = inject(FormBuilder);
+  private taskService = inject(TaskService);
 
   form: FormGroup = this.fb.group({
     title: ['', [Validators.required, Validators.minLength(3)]],
@@ -40,16 +41,17 @@ export class NewTaskComponent {
     },
   };
 
-  onCancel(): void {
-    this.cancel.emit();
+  close(): void {
+    this.onClose.emit();
   }
 
-  onSubmit(e: Event): void {
+  onFormSubmit(e: Event): void {
     e.preventDefault();
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
-    this.submit.emit(this.form.value);
+    this.taskService.addTask(this.form.value, this.userId);
+    this.onClose.emit();
   }
 }
